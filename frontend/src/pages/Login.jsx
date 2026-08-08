@@ -22,9 +22,6 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState("");
 
-  // Welcome popup
-  const [showWelcomePopup, setShowWelcomePopup] = useState(false);
-
   const change = (event) => {
     const { name, value } = event.target;
 
@@ -64,6 +61,10 @@ function Login() {
       const email = form.email.trim();
       const stateEmail = location.state?.email?.trim();
 
+      /*
+       * If Login is reached after Register/Reset Password,
+       * preserve the actual Cognito username returned earlier.
+       */
       const username =
         location.state?.username &&
         stateEmail &&
@@ -79,10 +80,7 @@ function Login() {
       const authData = response.data || {};
 
       /*
-       * FIRST LOGIN WITH TEMPORARY PASSWORD
-       *
-       * Do not show welcome popup here.
-       * User must first create a permanent password.
+       * First login with temporary password.
        */
       if (authData.challengeName === "NEW_PASSWORD_REQUIRED") {
         const challenge = {
@@ -105,11 +103,12 @@ function Login() {
       }
 
       /*
-       * NORMAL LOGIN SUCCESS
-       *
-       * This happens after user has set the permanent password.
+       * Normal successful login with permanent password.
+       * Go directly to Dashboard.
        */
-      setShowWelcomePopup(true);
+      navigate("/dashboard", {
+        replace: true
+      });
     } catch (error) {
       setFormError(messageFor(error));
     }
@@ -169,65 +168,6 @@ function Login() {
           <Link to="/register">Create one</Link>
         </p>
       </section>
-
-      {/* Welcome popup - shown only after successful normal login */}
-      {showWelcomePopup && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0, 0, 0, 0.45)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-            padding: "20px"
-          }}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="welcome-title"
-            style={{
-              width: "100%",
-              maxWidth: "420px",
-              background: "#ffffff",
-              borderRadius: "12px",
-              padding: "40px 32px",
-              textAlign: "center",
-              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2)"
-            }}
-          >
-            <h2
-              id="welcome-title"
-              style={{
-                margin: 0,
-                fontSize: "30px",
-                fontWeight: 600
-              }}
-            >
-              Welcome My Media
-            </h2>
-
-            <button
-              type="button"
-              onClick={() => setShowWelcomePopup(false)}
-              style={{
-                marginTop: "28px",
-                width: "100%",
-                minHeight: "46px",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontSize: "16px",
-                fontWeight: 600
-              }}
-            >
-              Continue
-            </button>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
