@@ -127,7 +127,7 @@ function Login() {
           </p>
         </div>
 
-        <form className="reference-form" noValidate onSubmit={submit}>
+        <form className="reference-form" onSubmit={submit}>
           <Input
             autoComplete="email"
             error={errors.email}
@@ -136,6 +136,7 @@ function Login() {
             name="email"
             onChange={change}
             placeholder="you@company.com"
+            required
             type="email"
             value={form.email}
           />
@@ -147,6 +148,7 @@ function Login() {
             label="Password"
             name="password"
             onChange={change}
+            required
             placeholder="••••••••"
             type="password"
             value={form.password}

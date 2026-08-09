@@ -34,8 +34,8 @@ function ForgotPassword() {
           <h1 className="auth-title">Forgot your password?</h1>
           <p className="auth-description">Enter your email and we&apos;ll send you a verification code to reset it.</p>
         </div>
-        <form className="reference-form" noValidate onSubmit={submit}>
-          <Input autoComplete="email" error={error} id="email" label="Email address" name="email" onChange={(event) => { setEmail(event.target.value); setError(""); setFormError(""); }} placeholder="you@company.com" type="email" value={email} />
+        <form className="reference-form" onSubmit={submit}>
+          <Input autoComplete="email" error={error} id="email" label="Email address" name="email" onChange={(event) => { setEmail(event.target.value); setError(""); setFormError(""); }} placeholder="you@company.com" required type="email" value={email} />
           {formError && <p className="form-error">{formError}</p>}
           <Button loading={loading} type="submit">Send verification code</Button>
         </form>

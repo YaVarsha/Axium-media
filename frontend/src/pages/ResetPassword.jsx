@@ -152,7 +152,6 @@ function ResetPassword() {
 
         <form
           className="reference-form"
-          noValidate
           onSubmit={submit}
         >
           {!isFirstLogin && (
@@ -165,6 +164,7 @@ function ResetPassword() {
                 name="email"
                 onChange={change}
                 placeholder="you@company.com"
+                required
                 type="email"
                 value={form.email}
               />
@@ -177,6 +177,7 @@ function ResetPassword() {
                 name="code"
                 onChange={change}
                 placeholder="Enter verification code"
+                required
                 value={form.code}
               />
             </>
@@ -189,6 +190,7 @@ function ResetPassword() {
             label="New password"
             name="password"
             onChange={change}
+            required
             placeholder="••••••••"
             type="password"
             value={form.password}
@@ -201,6 +203,7 @@ function ResetPassword() {
             label="Confirm password"
             name="confirmPassword"
             onChange={change}
+            required
             placeholder="••••••••"
             type="password"
             value={form.confirmPassword}

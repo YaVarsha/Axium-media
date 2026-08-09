@@ -136,7 +136,7 @@ function SetPassword() {
           </p>
         </div>
 
-        <form className="reference-form" noValidate onSubmit={submit}>
+        <form className="reference-form" onSubmit={submit}>
           <Input
             autoComplete="new-password"
             error={errors.password}
@@ -144,6 +144,7 @@ function SetPassword() {
             label="New password"
             name="password"
             onChange={change}
+            required
             placeholder="••••••••"
             type="password"
             value={form.password}
@@ -156,6 +157,7 @@ function SetPassword() {
             label="Confirm password"
             name="confirmPassword"
             onChange={change}
+            required
             placeholder="••••••••"
             type="password"
             value={form.confirmPassword}

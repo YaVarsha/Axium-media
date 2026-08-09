@@ -108,7 +108,7 @@ function CreateAccount() {
           </p>
         </div>
 
-        <form className="reference-form" noValidate onSubmit={submit}>
+        <form className="reference-form" onSubmit={submit}>
           <div className="grid-two">
             <Input
               autoComplete="given-name"
@@ -118,6 +118,7 @@ function CreateAccount() {
               name="firstName"
               onChange={change}
               placeholder="Jane"
+              required
               value={form.firstName}
             />
 
@@ -129,6 +130,7 @@ function CreateAccount() {
               name="lastName"
               onChange={change}
               placeholder="Smith"
+              required
               value={form.lastName}
             />
           </div>
@@ -141,6 +143,7 @@ function CreateAccount() {
             name="email"
             onChange={change}
             placeholder="you@company.com"
+            required
             type="email"
             value={form.email}
           />
@@ -153,6 +156,7 @@ function CreateAccount() {
             name="company"
             onChange={change}
             placeholder="Acme Corp"
+            required
             value={form.company}
           />
 
@@ -164,6 +168,7 @@ function CreateAccount() {
             name="phone"
             onChange={change}
             placeholder="+1 (555) 000-0000"
+            required
             type="tel"
             value={form.phone}
           />
